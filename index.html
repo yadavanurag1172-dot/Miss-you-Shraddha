@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Namaste Mademoiselle ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+--bg:#F5F0E8;
+--paper:#FFFCF8;
+--red:#B22222;
+--text:#111;
+--tape:#D9C7A3;
+}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+background:var(--bg);
+font-family:'Poppins',sans-serif;
+overflow:hidden;
+height:100vh;
+color:var(--text);
+}
+
+.page{
+position:absolute;
+inset:0;
+width:100%;
+height:100vh;
+display:none;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+padding:25px;
+text-align:center;
+overflow-y:auto;
+overflow-x:hidden;
+}
+
+.page.active{
+display:flex;
+animation:fade .7s ease;
+}
+
+h1{
+font-family:'Caveat',cursive;
+font-size:3rem;
+color:var(--red);
+margin-bottom:15px;
+}
+
+h2{
+font-family:'Caveat',cursive;
+font-size:2rem;
+color:var(--red);
+margin-bottom:10px;
+}
+
+p{
+line-height:1.7;
+max-width:330px;
+}
+
+.next{
+margin-top:30px;
+padding:14px 28px;
+border:none;
+background:var(--red);
+color:white;
+border-radius:50px;
+font-size:1rem;
+font-weight:600;
+cursor:pointer;
+}
+
+.polaroid{
+background:white;
+padding:10px 10px 45px;
+width:290px;
+margin:20px 0;
+box-shadow:0 12px 25px rgba(0,0,0,.12);
+position:relative;
+transform:rotate(-2deg);
+}
+
+.polaroid::before{
+content:"";
+position:absolute;
+top:-12px;
+left:50%;
+transform:translateX(-50%) rotate(-5deg);
+width:90px;
+height:22px;
+background:var(--tape);
+}
+
+.caption{
+margin-top:15px;
+font-family:'Caveat',cursive;
+font-size:1.4rem;
+}
+
+.sticky{
+background:#FFF4A3;
+padding:18px;
+width:290px;
+margin:10px 0;
+box-shadow:0 8px 18px rgba(0,0,0,.12);
+transform:rotate(-2deg);
+font-family:'Caveat',cursive;
+font-size:1.6rem;
+}
+
+.letter{
+background:white;
+padding:25px;
+border-radius:15px;
+box-shadow:0 10px 20px rgba(0,0,0,.1);
+width:320px;
+text-align:left;
+}
+
+.doodle{
+position:absolute;
+font-size:24px;
+animation:float 4s ease-in-out infinite;
+}
+
+.d1{top:10%;left:10%;}
+.d2{top:10%;right:10%;}
+.d3{bottom:12%;left:10%;}
+.d4{bottom:12%;right:10%;}
+
+
+.big-heart{
+font-size:5rem;
+animation:pulse 1.5s infinite;
+}
+
+@keyframes pulse{
+50%{transform:scale(1.15);}
+}
+
+@keyframes fade{
+from{
+opacity:0;
+transform:translateY(25px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+@keyframes float{
+50%{
+transform:translateY(-10px);
+}
+}
+
+.memory-img{
+width:300px;
+max-width:90%;
+border-radius:18px;
+margin-top:20px;
+box-shadow:0 10px 25px rgba(0,0,0,.12);
+animation:fade .7s ease;
+}
+
+.memory-text{
+margin-top:18px;
+font-family:'Caveat',cursive;
+font-size:2rem;
+max-width:300px;
+line-height:1.3;
+}
+
+.thankyou-page{
+position:relative;
+overflow:hidden;
+}
+
+.bg-img{
+position:absolute;
+inset:0;
+width:100%;
+height:100vh;
+object-fit:cover;
+opacity:.6;
+z-index:1;
+}
+
+.overlay{
+position:absolute;
+inset:0;
+background:rgba(245,240,232,.35);
+z-index:2;
+}
+
+.thankyou-content{
+position:relative;
+z-index:3;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+text-align:center;
+padding:20px;
+}
+
+.big-text{
+font-family:'Caveat',cursive;
+font-size:3rem;
+font-weight:700;
+color:#111;
+margin-top:10px;
+line-height:1.2;
+}
+
+.small-text{
+margin-top:15px;
+font-size:1rem;
+color:#111;
+max-width:260px;
+line-height:1.7;
+background:rgba(255,255,255,.45);
+padding:10px 18px;
+border-radius:14px;
+backdrop-filter:blur(3px);
+}
+
+.gallery{
+width:100%;
+display:flex;
+flex-direction:column;
+align-items:center;
+gap:22px;
+padding-bottom:120px;
+}
+
+.video-polaroid{
+width:92%;
+max-width:340px;
+background:white;
+padding:12px 12px 20px;
+box-shadow:0 10px 25px rgba(0,0,0,.12);
+transform:rotate(-1deg);
+}
+
+.gallery-video{
+width:100%;
+height: 240px;
+object-fit:cover;
+border-radius:4px;
+display:block;
+}
+
+.image-row{
+width:92%;
+display:flex;
+justify-content:center;
+gap:12px;
+}
+
+.small-polaroid{
+flex:1;
+background:white;
+padding:10px 10px 18px;
+box-shadow:0 10px 20px rgba(0,0,0,.12);
+}
+
+.small-polaroid img{
+width:100%;
+height:190px;
+object-fit:cover;
+border-radius:4px;
+display:block;
+}
+
+.caption{
+margin-top:10px;
+font-family:'Caveat',cursive;
+font-size:1.3rem;
+line-height:1.2;
+text-align:center;
+color:#111;
+}
+
+.polaroid img{
+width:100%;
+height:340px;
+object-fit:cover;
+background:#e8e8e8;
+}
+
+.page::-webkit-scrollbar{
+display:none;
+}
+
+.reveal-buttons{
+display:flex;
+flex-direction:column;
+gap:18px;
+margin-top:30px;
+}
+
+.reveal-btn{
+background:#FFF4A3;
+border:none;
+padding:16px 26px;
+font-family:'Caveat',cursive;
+font-size:1.8rem;
+border-radius:16px;
+box-shadow:0 8px 18px rgba(0,0,0,.12);
+color:#111;
+}
+
+.memory-reveal{
+display:none;
+flex-direction:column;
+align-items:center;
+margin-top:25px;
+animation:fade .6s ease;
+}
+
+.memory-reveal img{
+width:85%;
+max-width:320px;
+height:420px;
+object-fit:cover;
+border-radius:20px;
+box-shadow:0 12px 28px rgba(0,0,0,.18);
+}
+
+#memoryCaption{
+margin-top:18px;
+font-family:'Caveat',cursive;
+font-size:2rem;
+line-height:1.3;
+max-width:300px;
+}
+
+.reveal-next{
+margin-top:25px;
+}
+
+.final-page{
+position:relative;
+overflow:hidden;
+}
+
+.final-bg{
+position:absolute;
+inset:0;
+width:100%;
+height:100%;
+object-fit:cover;
+opacity:0.85;
+z-index:1;
+}
+
+.final-overlay{
+position:absolute;
+inset:0;
+background:rgba(245,240,232,.05);
+z-index:2;
+}
+
+.final-content{
+position:relative;
+z-index:3;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+min-height:100vh;
+text-align:center;
+padding:20px;
+color:#111;
+}
+.final-content h1,
+.final-content p{
+color:#111;
+text-shadow:
+0 2px 10px rgba(255,255,255,.45);
+}
+</style>
+</head>
+
+<body>
+
+<!-- PAGE 1 -->
+
+<section class="page active">
+
+<div class="doodle d1">❤️</div>
+<div class="doodle d2">🌸</div>
+
+<h1>Namaste Mademoiselle ❤️
+    (🤏🏻)
+</h1>
+
+<p>
+Kisi pagal ne mere Dairy me kuch to likha tha, ruko dikhata hu...(turn the volume🔊🔉🔊🔉 ON)
+</p>
+
+<button class="next" onclick="nextPage()">
+Touch Me 😅 →
+</button>
+
+</section>
+
+<!-- PAGE 2 -->
+
+<section class="page">
+
+<h1>Ye Dekho 💌</h1>
+
+<img 
+src="images/1.png" 
+class="memory-img"
+alt=""
+>
+
+<p class="memory-text">
+writing thodi kharab hai but achha hai,❤️
+
+Are kahi tumne to nhi likha ye 🤔🤔
+</p>
+
+<button class="next" onclick="nextPage()">
+Next →
+</button>
+
+</section>
+
+<!-- PAGE 3 -->
+
+<section class="page thankyou-page">
+
+<div class="overlay"></div>
+
+<img 
+src="images/BG.jpeg" 
+class="bg-img"
+alt=""
+>
+
+<div class="thankyou-content">
+
+<h1>Thank You for the note
+    💌(& sorry for the delay)
+hame iska bohot khed hai🫤</h1>
+
+<p class="big-text">
+Miss Youuuu Toooooooo ❤️
+</p>
+
+<p class="small-text">
+Jaldi Aao, ud ke ana. (Words ko choro feeling pe dhyan do😅😅) 🌸
+</p>
+
+<button class="next" onclick="nextPage()">
+chalo(kuch or dikhata hu) →
+</button>
+
+</div>
+
+</section>
+
+<!-- PAGE 3 -->
+
+<section class="page">
+
+<h1>come back soon 🌸</h1>
+
+<div class="polaroid">
+
+<img src="images/2.jpeg">
+
+<div class="caption">
+"Tumhare bina sab bohot suna suna hai ❤️"
+</div>
+
+</div>
+
+<button class="next" onclick="nextPage()">
+Next →
+</button>
+
+</section>
+
+<!-- PAGE 4 -->
+
+<section class="page">
+
+<h1>Memory 📒</h1>
+
+<div class="polaroid">
+
+<img src="images/3.png">
+
+<div class="caption">
+Cute ❤️
+</div>
+
+</div>
+
+<button class="next" onclick="nextPage()">
+Next →
+</button>
+
+</section>
+
+<!-- PAGE 5 -->
+
+<section class="page">
+
+<h1>Memory 😍😍</h1>
+
+<div class="polaroid">
+
+<img src="images/4.png">
+
+<div class="caption">
+😂😂😂😂....
+</div>
+
+</div>
+
+<button class="next" onclick="nextPage()">
+Next →
+</button>
+
+</section>
+
+<!-- PAGE 6 -->
+
+<section class="page">
+
+<h1>Memory 🌿</h1>
+
+<div class="polaroid">
+
+<img src="images/5.png">
+
+<div class="caption">
+Are You Mad? 😂😂😂
+</div>
+
+</div>
+
+<button class="next" onclick="nextPage()">
+Next →
+</button>
+
+</section>
+
+<!-- PAGE 7 -->
+
+<section class="page">
+
+<h1>Memory ✨</h1>
+
+<div class="polaroid">
+
+<img src="images/6.png">
+
+<div class="caption">
+Nhi Bhai, Tum Pagal Ho...😂😂
+</div>
+
+</div>
+
+<button class="next" onclick="nextPage()">
+Next →
+</button>
+
+</section>
+
+<!-- PAGE 8 -->
+
+<section class="page">
+
+<h1>Gallery 📸</h1>
+
+<div class="gallery">
+
+<!-- VIDEO -->
+
+<div class="video-polaroid">
+
+<video 
+class="gallery-video" 
+autoplay 
+muted 
+loop 
+playsinline
+>
+
+<source src="videos/1.mp4" type="video/mp4">
+
+</video>
+
+<div class="caption">
+Are Ye Kya Hai Bhai, Ye bhi karna hota hai 😂😂
+</div>
+
+</div>
+
+<!-- TWO IMAGES -->
+
+<div class="image-row">
+
+<div class="small-polaroid">
+
+<img src="images/7.jpeg" alt="">
+
+<div class="caption">
+Are Baddy Gurl, Ye kya hai😂😂🌸
+</div>
+
+</div>
+
+<div class="small-polaroid">
+
+<img src="images/8.jpeg" alt="">
+
+<div class="caption">
+Mai Kya Laadle Meowwww,_______ 😂😂😂
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<button class="next" onclick="nextPage()">
+Next →
+</button>
+
+</section>
+
+
+<!-- PAGE 9 -->
+
+<section class="page">
+
+<h1>Prettiest pictures of yours ✨volume🔊🔉🔊🔉 ON</h1>
+
+<div class="reveal-buttons">
+
+<button class="reveal-btn" onclick="showMemory(1)">
+Tap to see
+</button>
+
+<button class="reveal-btn" onclick="showMemory(2)">
+Tap to see
+</button>
+
+<button class="reveal-btn" onclick="showMemory(3)">
+Tap to see
+</button>
+
+<button class="reveal-btn" onclick="showMemory(4)">
+Tap to see
+</button>
+
+</div>
+
+<!-- IMAGE REVEAL AREA -->
+
+<div id="memoryReveal" class="memory-reveal">
+
+<img id="memoryImg" src="" alt="">
+
+<p id="memoryCaption"></p>
+
+<audio id="memoryAudio"></audio>
+
+<button class="next reveal-next" onclick="nextPage()">
+Next →
+</button>
+
+<script>
+
+function showMemory(num){
+
+const reveal=
+document.getElementById("memoryReveal");
+
+const img=
+document.getElementById("memoryImg");
+
+const caption=
+document.getElementById("memoryCaption");
+
+const audio=
+document.getElementById("memoryAudio");
+
+reveal.style.display="flex";
+
+if(num===1){
+
+img.src="project/images/pic1.jpeg";
+
+caption.innerHTML=
+"uff kya ada hai😂🤣😂🤣, ye nhi tha dusra hai";
+
+audio.src="project/audio/audio2.mpeg";
+
+}
+
+if(num===2){
+
+img.src="project/images/pic2.jpeg";
+
+caption.innerHTML=
+"Oops 😂🤣😂🤣😂🤣😂🤣 ✨";
+
+audio.src="project/audio/audio1.mpeg";
+
+}
+
+if(num===3){
+
+img.src="project/images/pic3.jpeg";
+
+caption.innerHTML=
+"what a pout, my god kya aankhe hai & that lipstick 💄😂😂";
+
+audio.src="project/audio/audio2.mpeg";
+
+}
+
+if(num===4){
+
+img.src="project/images/pic4.jpeg";
+
+caption.innerHTML=
+"My favourite face 🌸";
+
+audio.src="project/audio/audio1.mpeg";
+
+}
+
+audio.play();
+
+}
+
+</script>
+
+</div>
+
+</section>
+
+<!-- PAGE 10 -->
+
+<section class="page">
+
+<h1>From the bottom of my heart 💌</h1>
+
+<div class="letter">
+
+Dear Shraddha,
+
+<br><br>
+
+Thank you for every silly note,
+every random memory,
+and every page you left behind.
+
+<br><br>
+
+I kept them all because
+I knew one day
+they would become a story.
+
+<br><br>
+
+Love,
+
+<br>
+
+Anu Baby ❤️
+
+</div>
+
+<button class="next" onclick="nextPage()">
+Final Page →
+</button>
+
+</section>
+
+<!-- PAGE 11 -->
+
+<section class="page final-page">
+    <img 
+src="images/final-bg.jpeg" 
+class="final-bg"
+alt=""
+>
+<div class="final-overlay"></div>
+<div class="final-content">
+
+<div class="big-heart">❤️</div>
+
+<h1>Jaldi Aao Ud ke (Take Care)</h1>
+
+<p>
+
+You were missed more than
+you know.
+
+</p>
+</div>
+</section>
+
+<script>
+
+const pages=document.querySelectorAll(".page");
+let current=0;
+
+function nextPage(){
+
+pages[current].classList.remove("active");
+
+current++;
+
+if(current < pages.length){
+pages[current].classList.add("active");
+
+const music =
+document.getElementById("bgMusic");
+if(current >= 10){
+
+music.play();
+
+}
+}
+
+}
+
+</script>
+<audio id="bgMusic" loop>
+
+<source src="music/soft-music.mp3" type="audio/mp3">
+
+</audio>
+
+</body>
+</html>
